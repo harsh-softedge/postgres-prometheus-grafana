@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/prometheuscommunity/postgres-exporter
-  tag: v0.10.0
+  repository: docker.io/harssssshh/postgres-linux-loglevels
+  tag: latest
   pullPolicy: IfNotPresent
 
   ## Optionally specify an array of imagePullSecrets.
@@ -91,10 +91,10 @@ securityContext: {}
 config:
   datasource:
     # Specify one of both datasource or datasourceSecret
-    host: postgres-db
-    user: kong
+    host: "10.43.72.133"
+    user: kong"
     # Only one of password and passwordSecret can be specified
-    password: a1b2c3d4e5
+    password: "a1b2c3d4e5"
     # Specify passwordSecret if DB password is stored in secret.
     passwordSecret: {}
     # Secret name
