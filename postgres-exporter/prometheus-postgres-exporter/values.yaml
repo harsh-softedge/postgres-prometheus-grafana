@@ -118,7 +118,7 @@ config:
   includeDatabases: []
   constantLabels: {}
   # possible values debug, info, warn, error, fatal
-  logLevel: ""
+  logLevel: "debug"
   # These are the default queries that the exporter will run, extracted from: https://github.com/prometheus-community/postgres_exporter/blob/master/queries.yaml
   queries: |-
     pg_replication:
