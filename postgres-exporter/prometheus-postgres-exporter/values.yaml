@@ -317,21 +317,6 @@ config:
         - calls:
             usage: "COUNTER"
             description: "Number of times executed"
-#         - total_time_seconds:
-#             usage: "COUNTER"
-#             description: "Total time spent in the statement, in milliseconds"
-#         - min_time_seconds:
-#             usage: "GAUGE"
-#             description: "Minimum time spent in the statement, in milliseconds"
-#         - max_time_seconds:
-#             usage: "GAUGE"
-#             description: "Maximum time spent in the statement, in milliseconds"
-#         - mean_time_seconds:
-#             usage: "GAUGE"
-#             description: "Mean time spent in the statement, in milliseconds"
-#         - stddev_time_seconds:
-#             usage: "GAUGE"
-#             description: "Population standard deviation of time spent in the statement, in milliseconds"
         - rows:
             usage: "COUNTER"
             description: "Total number of rows retrieved or affected by the statement"
