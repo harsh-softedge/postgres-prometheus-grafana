@@ -319,7 +319,7 @@ config:
             description: "Number of times executed"
         - rows:
             usage: "COUNTER"
-            description: "Total number of rows retrieved or affected by the statement"
+            description: "Total number of rows retrieved or affected by the statement new"
         - shared_blks_hit:
             usage: "COUNTER"
             description: "Total number of shared block cache hits by the statement"
