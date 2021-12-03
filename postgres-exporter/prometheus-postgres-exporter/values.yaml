@@ -281,7 +281,7 @@ config:
             usage: "GAUGE"
             description: "Disk space used by the database"
             
-     pg_prepared_xacts:                                                                                                                                                    
+    pg_prepared_xacts:                                                                                                                                                    
       query: " SELECT * FROM ( SELECT database, owner, gid, transaction, round(extract(epoch FROM now() - prepared))/ 3600 AS age FROM pg_prepared_xacts) as foo WHERE age > 1 GROUP BY database, age, gid, transaction, owner ORDER BY age DESC"                                                                                 
       master: true                                                                                                                                                                                                                                                                                                       
       metrics:
