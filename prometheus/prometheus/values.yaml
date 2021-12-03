@@ -1386,7 +1386,7 @@ serverFiles:
       - job_name: postgres-exporter
         static_configs:
           - targets:
-            - 10.43.203.24:80 
+            - postgresql-exporter-prometheus-postgres-exporter:80
       - job_name: prometheus
         static_configs:
           - targets:
