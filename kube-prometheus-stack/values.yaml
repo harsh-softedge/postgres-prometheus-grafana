@@ -731,11 +731,7 @@ grafana:
      secureJsonData:
        password: 'a1b2c3d4e5'
      jsonData:
-      sslmode: 'disable'
-      #tlsConfigurationMethod: 'file-path'
-      #sslRootCertFile:
-      #sslCertFile:
-      #sslKeyFile:
+      sslmode: 'disabled'
       maxOpenConns: 0
       maxIdleConns: 2
       connMaxLifetime: 14400

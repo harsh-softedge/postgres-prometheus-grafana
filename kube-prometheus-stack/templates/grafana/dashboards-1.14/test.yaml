@@ -1,0 +1,132 @@
+apiVersion: v1
+data:
+  test.json: |
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "target": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            },
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "gnetId": null,
+      "graphTooltip": 0,
+      "id": 27,
+      "links": [],
+      "liveNow": false,
+      "panels": [
+        {
+          "datasource": "PostgreSQL",
+          "description": "Test For PostgreSQL",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "displayMode": "auto"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          },
+          "id": 2,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "8.2.3",
+          "targets": [
+            {
+              "format": "table",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT userid::regrole , d.datname AS databasename, a.total_time AS total_time_seconds ,a.max_time AS max_time_seconds, a.min_time AS min_time_seconds, a.mean_time AS mean_time_seconds, a.calls AS calls ,a.rows AS rows, a.query FROM pg_stat_statements a Inner join pg_database d on d.oid=a.dbid Where upper(a.query) not like '%PREPARED%' and a.calls > 1 order by a.mean_time desc, a.calls limit 50\n",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "timeColumn": "time",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "title": "Test",
+          "type": "table"
+        }
+      ],
+      "refresh": "",
+      "schemaVersion": 31,
+      "style": "dark",
+      "tags": [],
+      "templating": {
+        "list": []
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timepicker": {},
+      "timezone": "",
+      "title": "PostgreSQL Dashboard",
+      "uid": "mmoAYO27z",
+      "version": 1
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"test.json":"{\n  \"annotations\": {\n    \"list\": [\n      {\n        \"builtIn\": 1,\n        \"datasource\": \"-- Grafana --\",\n        \"enable\": true,\n        \"hide\": true,\n        \"iconColor\": \"rgba(0, 211, 255, 1)\",\n        \"name\": \"Annotations \u0026 Alerts\",\n        \"target\": {\n          \"limit\": 100,\n          \"matchAny\": false,\n          \"tags\": [],\n          \"type\": \"dashboard\"\n        },\n        \"type\": \"dashboard\"\n      }\n    ]\n  },\n  \"editable\": true,\n  \"fiscalYearStartMonth\": 0,\n  \"gnetId\": null,\n  \"graphTooltip\": 0,\n  \"id\": 27,\n  \"links\": [],\n  \"liveNow\": false,\n  \"panels\": [\n    {\n      \"datasource\": \"PostgreSQL\",\n      \"description\": \"Test For PostgreSQL\",\n      \"fieldConfig\": {\n        \"defaults\": {\n          \"color\": {\n            \"mode\": \"thresholds\"\n          },\n          \"custom\": {\n            \"align\": \"auto\",\n            \"displayMode\": \"auto\"\n          },\n          \"mappings\": [],\n          \"thresholds\": {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n                \"color\": \"green\",\n                \"value\": null\n              },\n              {\n                \"color\": \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n        },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\": 9,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 0\n      },\n      \"id\": 2,\n      \"options\": {\n        \"showHeader\": true\n      },\n      \"pluginVersion\": \"8.2.3\",\n      \"targets\": [\n        {\n          \"format\": \"table\",\n          \"group\": [],\n          \"metricColumn\": \"none\",\n          \"rawQuery\": true,\n          \"rawSql\": \"SELECT userid::regrole , d.datname AS databasename, a.total_time AS total_time_seconds ,a.max_time AS max_time_seconds, a.min_time AS min_time_seconds, a.mean_time AS mean_time_seconds, a.calls AS calls ,a.rows AS rows, a.query FROM pg_stat_statements a Inner join pg_database d on d.oid=a.dbid Where upper(a.query) not like '%PREPARED%' and a.calls \u003e 1 order by a.mean_time desc, a.calls limit 50\\n\",\n          \"refId\": \"A\",\n          \"select\": [\n            [\n              {\n                \"params\": [\n                  \"value\"\n                ],\n                \"type\": \"column\"\n              }\n            ]\n          ],\n          \"timeColumn\": \"time\",\n          \"where\": [\n            {\n              \"name\": \"$__timeFilter\",\n              \"params\": [],\n              \"type\": \"macro\"\n            }\n          ]\n        }\n      ],\n      \"title\": \"Test\",\n      \"type\": \"table\"\n    }\n  ],\n  \"refresh\": \"\",\n  \"schemaVersion\": 31,\n  \"style\": \"dark\",\n  \"tags\": [],\n  \"templating\": {\n    \"list\": []\n  },\n  \"time\": {\n    \"from\": \"now-6h\",\n    \"to\": \"now\"\n  },\n  \"timepicker\": {},\n  \"timezone\": \"\",\n  \"title\": \"PostgreSQL Dashboard\",\n  \"uid\": \"mmoAYO27z\",\n  \"version\": 1\n}\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":null,"name":"test-db","namespace":"default"}}
+  creationTimestamp: "2021-12-06T14:32:54Z"
+  labels:
+    grafana_dashboard: "1"
+  name: test-db
+  namespace: default
+  resourceVersion: "480303"
+  uid: d21c290b-8cd1-48af-9950-c4132b2cc1cb
