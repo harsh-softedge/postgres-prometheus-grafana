@@ -302,7 +302,7 @@ config:
             description: "Count Of Every Transaction"
 
     pg_stat_statements:
-      query: "SELECT userid::regrole , d.datname AS databasename, a.total_time AS total_time_seconds ,a.max_time AS max_time_seconds, a.min_time AS min_time_seconds, a.mean_time AS mean_time_seconds, a.calls AS calls ,a.rows AS rows, a.query FROM pg_stat_statements a Inner join pg_database d on d.oid=a.dbid Where upper(a.query) not like '%PREPARED%' and a.calls > 1 order by a.mean_time desc, a.calls limit 50"
+      query: "SELECT userid::regrole , d.datname AS databasename, a.mean_time / 1000 AS mean_time_seconds, a.calls AS calls, a.query FROM pg_stat_statements a Inner join pg_database d on d.oid=a.dbid Where upper(a.query) not like '%PREPARED%' and a.calls > 1 order by a.mean_time desc, a.calls LIMIT 50"
       master: true
       metrics:
         - rolname:
@@ -311,66 +311,15 @@ config:
         - datname:
             usage: "LABEL"
             description: "Name of database"
-        - queryid:
+        - query:
             usage: "LABEL"
-            description: "Query ID"
+            description: "Query"
         - calls:
             usage: "COUNTER"
             description: "Number of times executed"
-        - total_time_seconds:
-            usage: "COUNTER"
-            description: "Total time spent in the statement, in milliseconds"
-        - min_time_seconds:
-            usage: "GAUGE"
-            description: "Minimum time spent in the statement, in milliseconds"
-        - max_time_seconds:
-            usage: "GAUGE"
-            description: "Maximum time spent in the statement, in milliseconds"
         - mean_time_seconds:
             usage: "GAUGE"
             description: "Mean time spent in the statement, in milliseconds"
-        - stddev_time_seconds:
-            usage: "GAUGE"
-            description: "Population standard deviation of time spent in the statement, in milliseconds"
-        - rows:
-            usage: "COUNTER"
-            description: "Total number of rows retrieved or affected by the statement new"
-        - shared_blks_hit:
-            usage: "COUNTER"
-            description: "Total number of shared block cache hits by the statement"
-        - shared_blks_read:
-            usage: "COUNTER"
-            description: "Total number of shared blocks read by the statement"
-        - shared_blks_dirtied:
-            usage: "COUNTER"
-            description: "Total number of shared blocks dirtied by the statement"
-        - shared_blks_written:
-            usage: "COUNTER"
-            description: "Total number of shared blocks written by the statement"
-        - local_blks_hit:
-            usage: "COUNTER"
-            description: "Total number of local block cache hits by the statement"
-        - local_blks_read:
-            usage: "COUNTER"
-            description: "Total number of local blocks read by the statement"
-        - local_blks_dirtied:
-            usage: "COUNTER"
-            description: "Total number of local blocks dirtied by the statement"
-        - local_blks_written:
-            usage: "COUNTER"
-            description: "Total number of local blocks written by the statement"
-        - temp_blks_read:
-            usage: "COUNTER"
-            description: "Total number of temp blocks read by the statement"
-        - temp_blks_written:
-            usage: "COUNTER"
-            description: "Total number of temp blocks written by the statement"
-        - blk_read_time_seconds:
-            usage: "COUNTER"
-            description: "Total time the statement spent reading blocks, in milliseconds (if track_io_timing is enabled, otherwise zero)"
-        - blk_write_time_seconds:
-            usage: "COUNTER"
-            description: "Total time the statement spent writing blocks, in milliseconds (if track_io_timing is enabled, otherwise zero)"
 
     pg_stat_activity_idle:
       query: |
